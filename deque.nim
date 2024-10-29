@@ -209,7 +209,7 @@ proc normalize[T](target: var Deque[T])
 proc makeRoom[T](target: var Deque[T], pos: Natural, howMany: Natural)
 # forward declarations
 
-proc `[]`*[T](deq: Deque[T], i: Natural): lent T {.inline.} =
+proc `[]`*[T](deq: Deque[T], i: Natural): T {.inline.} =
   ## Accesses the `i`-th element of `deq`.
   runnableExamples:
     let a = [10, 20, 30, 40, 50].toDeque
@@ -231,7 +231,7 @@ proc `[]`*[T](deq: var Deque[T], i: Natural): var T {.inline.} =
   xBoundsCheck(deq, i)
   return deq.data[(deq.head + i.uint) and deq.mask]
 
-proc `[]`*[T](deq: Deque[T], i: BackwardsIndex): lent T {.inline.} =
+proc `[]`*[T](deq: Deque[T], i: BackwardsIndex): T {.inline.} =
   ## Accesses the backwards indexed `i`-th element.
   ##
   ## `deq[^1]` is the last element.
@@ -377,7 +377,7 @@ proc `[]=`*[T; U, V: Ordinal](target: var Deque[T], x: HSlice[U, V], source: ope
     data1[start..stop] = if not backwards: source[0 ..< howLong] else: source[0 ..< howLong].reversed
   target = data1.toDeque
 
-iterator items*[T](deq: Deque[T]): lent T {.inline.} =
+iterator items*[T](deq: Deque[T]): T {.inline.} =
   ## Yields every element of `deq`.
   ##
   ## **See also:**
@@ -431,7 +431,7 @@ iterator pairs*[T](deq: Deque[T]): tuple[key: int, val: T] {.inline.} =
     yield (c, deq.data[(deq.head + c.uint) and deq.mask])
     inc c
 
-iterator backwards*[T](deq: Deque[T]): lent T {.inline.} =
+iterator backwards*[T](deq: Deque[T]): T {.inline.} =
   ## Yields each element of `deq` in reverse order.
     ##
   ## **See also:**
@@ -668,7 +668,7 @@ template `@@`*[T](deq: Deque[T]): Deque[T] =
   ## * `toDeque template <#toDeque.t,Deque[T]>`_
   deq
 
-proc first*[T](deq: Deque[T]): lent T {.inline.} =
+proc first*[T](deq: Deque[T]): T {.inline.} =
   ## Returns the first element of `deq`, but does not remove it from the Deque.
   ##
   ## **See also:**
@@ -683,7 +683,7 @@ proc first*[T](deq: Deque[T]): lent T {.inline.} =
   emptyCheck(deq)
   result = deq.data[deq.head and deq.mask]
 
-proc last*[T](deq: Deque[T]): lent T {.inline.} =
+proc last*[T](deq: Deque[T]): T {.inline.} =
   ## Returns the last element of `deq`, but does not remove it from the Deque.
   ##
   ## **See also:**
