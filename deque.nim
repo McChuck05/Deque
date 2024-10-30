@@ -976,10 +976,12 @@ proc insert*[T](target: var Deque[T], source: sink Deque[T], pos: Natural) =
 proc reverse*[T](target: var Deque[T]) =
   ## Reverses `target` in place.
   checkIfInitialized(target)
-  let final = target.high
-  if unlikely final < 0: return
-  for i in 0 .. (final div 2):
-    swap(target[i], target[final - i])
+  var lo = target.low
+  var hi = target.high
+  while lo < hi:
+    swap(target[lo], target[hi])
+    dec(hi)
+    inc(lo)
 
 proc reversed*[T](source: Deque[T]): Deque[T] =
   ## Returns a reversed copy of `source`.
