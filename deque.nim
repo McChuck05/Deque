@@ -49,7 +49,9 @@ runnableExamples:
   assert a == @@[22, 11, 20]
 
 
-import std/[assertions, hashes, math, sequtils, algorithm]
+import std/[assertions, hashes]  # sequtils removed, unused
+from math import nextPowerOfTwo
+from algorithm import reversed
 
 type
   Deque*[T] = object
