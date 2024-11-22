@@ -1164,6 +1164,9 @@ proc rotR*[T](deq: var Deque[T], howMany: Natural = 1) {.inline.} =
     deq.data[deq.head and deq.mask] = move deq.data[deq.tail and deq.mask]
     #deq.addFirst(popLast(deq))
 
+template rotateRight*[T](deq: var Deque[T], howMany: Natural = 1) =
+  rotR(deq, howMany)
+
 proc rotL*[T](deq: var Deque[T], howMany: Natural = 1) {.inline.} =
   ## Rotate each element of `deq` `howMany` places to the left, wrapping around.
   ## Default is one.
@@ -1184,6 +1187,9 @@ proc rotL*[T](deq: var Deque[T], howMany: Natural = 1) {.inline.} =
     inc deq.head
     inc deq.tail
     # deq.addLast(popFirst(deq))
+
+template rotateLeft*[T](deq: var Deque[T], howMany: Natural = 1) =
+  rotL(deq, howMany)
 
 proc extract*[T](deq: var Deque[T], where: Natural): T =
   ## Remove the element at position `where` from `deq` and return it.
