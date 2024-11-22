@@ -81,7 +81,11 @@ when isMainModule:
   assert deq2 == @@[7, 3]
   assert isEmpty(deq1)
   
-  
+  deq1 = @@[1, 2, 3, 4, 5]
+  deq1.rotateLeft(2)
+  assert deq1 == @@[3, 4, 5, 1, 2]
+  deq1.rotateRight(2)
+  assert deq1 == @@[1, 2, 3, 4, 5]
   
   
   
