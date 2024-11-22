@@ -132,7 +132,6 @@ proc newDeque*[T](initialSize: Natural = defaultInitialSize): Deque[T] =
   result.initImpl(max(initialSize, 2))
 
 template reset*[T](deq: var Deque[T], maxCap: Natural = defaultInitialSize) =
-  ## This is a documentation comment.
   ## Resets `deq` so it is empty and sets its capacity to `maxCap`.  
   ## Capacity is always a power of two.
   ## 
